@@ -7,20 +7,18 @@ jobs :
     runs-on : ubuntu-latest
     steps :
       working-directory : ./web
-      -
-        name : webImage
-        uses: docker/setup-buildx-action@v3
-      -
+        - uses: actions/checkout@v3
+        - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag webImage:$(date +%s)
       working-directory : ./db
-      -
-        name : dbImage
-        uses: docker/setup-buildx-action@v3
-      -
+        - uses: actions/checkout@v3
+        - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag dbImage:$(date +%s)
       working-directory : ./words
-      -
-        name : wordsImage
-        uses : docker/setup-buildx-action@v3
-      -
+        - uses: actions/checkout@v3
+        - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag wordsImage:$(date +%s)
+
       
 
 
